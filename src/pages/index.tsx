@@ -8,6 +8,7 @@ const Home: NextPage = () => {
       <Head>
         <title>MKS Sistemas</title>
       </Head>
+
       <Main></Main>
     </>
   );

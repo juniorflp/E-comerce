@@ -3,7 +3,11 @@ import * as S from "./styles";
 import iconCart from "../../../public/assets/cartImage.png";
 import Image from "next/image";
 
-const HeaderComponent: React.FC = () => {
+interface IHeaderComponent {
+  numberOfProducts: number;
+}
+
+const HeaderComponent: React.FC<IHeaderComponent> = ({ numberOfProducts }) => {
   return (
     <S.Header>
       <S.Flex gap="10px">
@@ -17,7 +21,7 @@ const HeaderComponent: React.FC = () => {
       <S.FlexCart>
         <Image src={iconCart} alt="icon cart" width={20} />
         <S.Text size="20px" weight="700">
-          0
+          {numberOfProducts}
         </S.Text>
       </S.FlexCart>
     </S.Header>
