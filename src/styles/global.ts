@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
   }
   html{
     font-family: Montserrat, Arial, sans-serif;
+    background-color: #ffff;
   }
  
 `;

@@ -5,9 +5,13 @@ import Image from "next/image";
 
 interface IHeaderComponent {
   numberOfProducts: number;
+  handleClick: () => void;
 }
 
-const HeaderComponent: React.FC<IHeaderComponent> = ({ numberOfProducts }) => {
+const HeaderComponent: React.FC<IHeaderComponent> = ({
+  numberOfProducts,
+  handleClick,
+}) => {
   return (
     <S.Header>
       <S.Flex gap="10px">
@@ -18,7 +22,7 @@ const HeaderComponent: React.FC<IHeaderComponent> = ({ numberOfProducts }) => {
           Sistemas
         </S.Text>
       </S.Flex>
-      <S.FlexCart>
+      <S.FlexCart onClick={handleClick}>
         <Image src={iconCart} alt="icon cart" width={20} />
         <S.Text size="20px" weight="700">
           {numberOfProducts}

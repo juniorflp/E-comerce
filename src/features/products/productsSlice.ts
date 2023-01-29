@@ -22,7 +22,7 @@ export const getProducts = createAsyncThunk(
   }
 );
 
-interface ProductsState {
+export interface ProductsState {
   loading: boolean;
   error: string | null;
   products: Product[];

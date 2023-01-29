@@ -39,4 +39,5 @@ export const FlexCart = styled.div<StylesProps>`
   border-radius: 8px;
   padding: 8px;
   justify-content: space-around;
+  cursor: pointer;
 `;
