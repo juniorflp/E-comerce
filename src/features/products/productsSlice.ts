@@ -64,6 +64,23 @@ const productsSlice = createSlice({
         };
         state.shoppingCart.push(cartItem);
       }
+      // set itens in localtorage
+      const arrayAsString = JSON.stringify(state.shoppingCart);
+      localStorage.setItem("products", arrayAsString);
+      //add number in length of cart
+      state.numberOfItems = state.shoppingCart.reduce((acc, item) => {
+        return acc + item.quantity;
+      }, 0);
+    },
+    addFromLocalStorage(state, action) {
+      // verify that the item exists no array and add new item,
+      const arrayLocal: IshooppingCart[] = action.payload;
+      arrayLocal.forEach((item) => {
+        if (!state.shoppingCart.find((cartItem) => cartItem.id === item.id)) {
+          state.shoppingCart.push(item);
+        }
+      });
+
       state.numberOfItems = state.shoppingCart.reduce((acc, item) => {
         return acc + item.quantity;
       }, 0);
@@ -86,6 +103,11 @@ const productsSlice = createSlice({
           (item) => item.id !== id
         );
       }
+
+      //set new aray in localstorage
+      const arrayAsString = JSON.stringify(state.shoppingCart);
+      localStorage.setItem("products", arrayAsString);
+
       state.numberOfItems = state.shoppingCart.reduce((acc, item) => {
         return acc + item.quantity;
       }, 0);
@@ -95,6 +117,8 @@ const productsSlice = createSlice({
       state.shoppingCart = state.shoppingCart.filter((item) => {
         return item.id !== id;
       });
+      const arrayAsString = JSON.stringify(state.shoppingCart);
+      localStorage.setItem("products", arrayAsString);
 
       state.numberOfItems = state.shoppingCart.reduce((acc, item) => {
         return acc + item.quantity;
@@ -123,5 +147,9 @@ const productsSlice = createSlice({
 });
 
 export default productsSlice.reducer;
-export const { addToCart, removeFromCart, removeAllProductsFromCart } =
-  productsSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  removeAllProductsFromCart,
+  addFromLocalStorage,
+} = productsSlice.actions;

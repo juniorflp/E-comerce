@@ -1,4 +1,5 @@
 import {
+  addFromLocalStorage,
   addToCart,
   getProducts,
   removeFromCart,
@@ -10,7 +11,7 @@ import * as S from "./styles";
 import CardProduct from "../Card";
 import SkeletonCards from "../Skeleton";
 import Modal from "../Modal";
-import { Product } from "../../@types/api/products-interface";
+import { IshooppingCart, Product } from "../../@types/api/products-interface";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DrawerComponent from "../Drawer";
@@ -22,7 +23,9 @@ export interface ModalState {
 
 const Main: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { products, numberOfItems, loading } = useAppSelector((state) => state);
+  const { products, shoppingCart, numberOfItems, loading } = useAppSelector(
+    (state) => state
+  );
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const toggleDrawer = () => {
     setIsOpenDrawer((prevState) => !prevState);
@@ -48,6 +51,12 @@ const Main: React.FC = () => {
 
   useEffect(() => {
     dispatch(getProducts({ orderBy: "DESC", sortBy: "id", page: 1, rows: 8 }));
+
+    const arrayAsString = localStorage.getItem("products");
+    if (arrayAsString) {
+      const arrayOfObjects: IshooppingCart[] = JSON.parse(arrayAsString);
+      dispatch(addFromLocalStorage(arrayOfObjects));
+    }
   }, []);
 
   const newArrayProducts = products?.map((product) => {
