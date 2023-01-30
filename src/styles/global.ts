@@ -11,6 +11,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: Montserrat, Arial, sans-serif;
     background-color: #ffff;
   }
+
+
  
 `;
 

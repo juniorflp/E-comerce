@@ -6,19 +6,44 @@ import {
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import HeaderComponent from "../Header";
-import Drawer from "react-modern-drawer";
-import "react-modern-drawer/dist/index.css";
 import * as S from "./styles";
 import CardProduct from "../Card";
+import SkeletonCards from "../Skeleton";
+import Modal from "../Modal";
+import { Product } from "../../@types/api/products-interface";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import DrawerComponent from "../Drawer";
+
+export interface ModalState {
+  isOpen: boolean;
+  product?: Product;
+}
 
 const Main: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { products, shoppingCart, numberOfItems } = useAppSelector(
-    (state) => state
-  );
-  const [isOpen, setIsOpen] = useState(false);
+  const { products, numberOfItems, loading } = useAppSelector((state) => state);
+  const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const toggleDrawer = () => {
-    setIsOpen((prevState) => !prevState);
+    setIsOpenDrawer((prevState) => !prevState);
+  };
+  const [modalIsOpen, setIsOpenModal] = useState<ModalState>({
+    isOpen: false,
+    product: undefined,
+  });
+
+  const openModal = (id: number, product: Product) => {
+    if (id === product.id) {
+      setIsOpenModal({ isOpen: true, product: product });
+    }
+  };
+  const closeModal = () => {
+    setIsOpenModal({ isOpen: false });
+  };
+
+  const handleAddToCart = (id: number) => {
+    dispatch(addToCart(id));
+    toast("👍 Item adicionado ao carrinho!");
   };
 
   useEffect(() => {
@@ -29,69 +54,38 @@ const Main: React.FC = () => {
     return { ...product, price: Number(product.price) };
   });
 
-  const totalCart = shoppingCart.reduce((total, current) => {
-    return total + Number(current.price) * current.quantity;
-  }, 0);
-
-  const formatedTotal = totalCart.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
-
   return (
     <>
-      <Drawer
-        open={isOpen}
-        onClose={toggleDrawer}
-        direction="right"
-        size={500}
-        overlayColor="transparent"
-      >
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            backgroundColor: "#0f52ba",
-            boxShadow: "-5px 0px 6px rgba(0, 0, 0, 0.13)",
-          }}
-        >
-          estilo aqui
-        </div>
-      </Drawer>
       <S.Wraper>
+        <DrawerComponent
+          isOpenDrawer={isOpenDrawer}
+          toggleDrawer={() => toggleDrawer()}
+        />
         <HeaderComponent
           numberOfProducts={numberOfItems}
           handleClick={toggleDrawer}
         />
+
         <S.Container>
           <S.ContainerCard>
-            {newArrayProducts?.map((item) => (
-              <CardProduct
-                key={item.id}
-                handleClick={() => dispatch(addToCart(item.id))}
-                product={item}
-              />
-            ))}
-          </S.ContainerCard>
-          <h2>Shopping cart total: {formatedTotal}</h2>
-          <S.ContainerCard>
-            {shoppingCart?.map((item) => (
-              <S.Card key={item.id}>
-                <img src={item.photo} width="100%" alt={item.name} />
-                <p>{item.name}</p>
-                <p>{item.brand}</p>
-                <p>{item.price}</p>
-                <p>{item.quantity}</p>
-                <button onClick={() => dispatch(removeFromCart(item.id))}>
-                  remove
-                </button>
-                {/* <button onClick={() => handleAddToCart(item.id)}>ad</button> */}
-                <p>total:{item.quantity * Number(item.price)}</p>
-              </S.Card>
-            ))}
+            {!loading ? (
+              newArrayProducts?.map((item) => (
+                <CardProduct
+                  key={item.id}
+                  handleClick={() => handleAddToCart(item.id)}
+                  openModal={() => openModal(item.id, item)}
+                  product={item}
+                />
+              ))
+            ) : (
+              <SkeletonCards />
+            )}
           </S.ContainerCard>
         </S.Container>
       </S.Wraper>
+      <ToastContainer autoClose={2000} position="bottom-left" />
+      <Modal closeModal={() => closeModal()} modalIsOpen={modalIsOpen} />
+      <S.Footer>MKS sistemas © Todos os direitos reservados</S.Footer>
     </>
   );
 };

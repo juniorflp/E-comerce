@@ -64,9 +64,9 @@ const productsSlice = createSlice({
         };
         state.shoppingCart.push(cartItem);
       }
-      if (state.shoppingCart.length > 0) {
-        state.numberOfItems++;
-      }
+      state.numberOfItems = state.shoppingCart.reduce((acc, item) => {
+        return acc + item.quantity;
+      }, 0);
     },
 
     removeFromCart(state, action) {
@@ -86,9 +86,19 @@ const productsSlice = createSlice({
           (item) => item.id !== id
         );
       }
-      if (state.shoppingCart.length >= 0) {
-        state.numberOfItems--;
-      }
+      state.numberOfItems = state.shoppingCart.reduce((acc, item) => {
+        return acc + item.quantity;
+      }, 0);
+    },
+    removeAllProductsFromCart(state, action) {
+      const id: number = action.payload;
+      state.shoppingCart = state.shoppingCart.filter((item) => {
+        return item.id !== id;
+      });
+
+      state.numberOfItems = state.shoppingCart.reduce((acc, item) => {
+        return acc + item.quantity;
+      }, 0);
     },
   },
 
@@ -113,4 +123,5 @@ const productsSlice = createSlice({
 });
 
 export default productsSlice.reducer;
-export const { addToCart, removeFromCart } = productsSlice.actions;
+export const { addToCart, removeFromCart, removeAllProductsFromCart } =
+  productsSlice.actions;

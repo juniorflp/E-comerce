@@ -21,6 +21,14 @@ export const Header = styled.div`
   align-items: center;
   padding: 65px 29px 65px 29px;
   justify-content: space-around;
+
+  @media (max-width: 650px) {
+    height: 48px;
+    padding: 35px 18px 35px 18px;
+  }
+  @media (max-width: 370px) {
+    gap: 8px;
+  }
 `;
 
 export const Text = styled.p<StylesProps>`
@@ -40,4 +48,8 @@ export const FlexCart = styled.div<StylesProps>`
   padding: 8px;
   justify-content: space-around;
   cursor: pointer;
+  @media (max-width: 370px) {
+    gap: 2px;
+    padding: 4px;
+  }
 `;

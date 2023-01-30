@@ -2,15 +2,21 @@ import styled from "styled-components";
 
 export const Wraper = styled.main`
   width: 100%;
-  height: 100vh;
   display: flex;
+  margin-bottom: 100px;
   flex-direction: column;
   align-items: center;
 `;
-
+export const Footer = styled.footer`
+  width: 100%;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eeeeee;
+`;
 export const Container = styled.div`
   max-width: 940px;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,6 +27,13 @@ export const ContainerCard = styled.div`
   margin-top: 80px;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 650px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 export const Card = styled.div`

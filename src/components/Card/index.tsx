@@ -6,13 +6,19 @@ import * as S from "./styles";
 interface ICardproduct {
   product: Product;
   handleClick: () => void;
+  openModal: () => void;
 }
 
-const CardProduct: React.FC<ICardproduct> = ({ product, handleClick }) => {
+const CardProduct: React.FC<ICardproduct> = ({
+  product,
+  handleClick,
+  openModal,
+}) => {
   return (
-    <S.Card key={product.id}>
+    <S.Card>
       <S.WraperPhoto>
         <img
+          onClick={openModal}
           src={product.photo}
           width="100%"
           height="100%"
