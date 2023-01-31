@@ -1,34 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# E-comerce
+## Projeto de e-comerce com carrinho de compras funcional. </br>link= https://e-comerce-rho.vercel.app/
 
-## Getting Started
+Este projeto simula um site de vendas de produtos eletronicos onde é consumido dados de uma API para listar os produtos,
+clicando no card abre um modal com a descrição do prduto, clicando no botão comprar o produto selecionado vai para o carinho,
+no carrinho o usuário pode acresentar ou excluir itens e os items ficam salvos no localstorage do navegador desta forma 
+o usuário pode fechar o navegador e voltar que os produtos estarão lá.</br>
+*App responsivo
 
-First, run the development server:
+##Tecnologia usada no projeto
+<lu> 
+  <li>Next js com Typescript</li>
+  <li>Redux toolkit/thunk</li>
+  <li>Styled-components</li>
+  <li>Jest / testing-library</li>
+</lu></br></br>
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+![Captura de tela 2023-01-31 141649](https://user-images.githubusercontent.com/100806337/215835584-897b0927-2c82-4c6b-8f69-fd141b765bce.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Captura de tela 2023-01-31 141735](https://user-images.githubusercontent.com/100806337/215835613-8be82944-9651-4faa-85b6-c8d3b1bd512f.png)
+![Captura de tela 2023-01-31 141808](https://user-images.githubusercontent.com/100806337/215835631-2897cca5-9364-48dc-8a98-b8dac0e1d8cd.png)
+![Captura de tela 2023-01-31 141908](https://user-images.githubusercontent.com/100806337/215835649-024c3f33-23ee-4baf-a384-d69f04567713.png)
+![Captura de tela 2023-01-31 141936](https://user-images.githubusercontent.com/100806337/215835660-f5c6bcb9-84d5-4b55-96b8-9644056635ee.png)
