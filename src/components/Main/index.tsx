@@ -50,6 +50,7 @@ const Main: React.FC = () => {
   useEffect(() => {
     dispatch(getProducts({ orderBy: "DESC", sortBy: "id", page: 1, rows: 8 }));
 
+    //get data from localstorage
     const arrayAsString = localStorage.getItem("products");
     if (arrayAsString) {
       const arrayOfObjects: IshooppingCart[] = JSON.parse(arrayAsString);
