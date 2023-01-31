@@ -35,9 +35,6 @@ const Modal: React.FC<IModal> = ({ closeModal, modalIsOpen }) => {
             borderRadius: "16px",
           },
         }}
-        // contentLabel="Example Modal"
-        // className="modal-content"
-        // overlayClassName="modal-overlay"
       >
         {modalIsOpen && (
           <S.Container>

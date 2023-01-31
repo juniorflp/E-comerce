@@ -37,7 +37,7 @@ export const Text = styled.p<StylesProps>`
   font-weight: ${(props) => props.weight || "400"};
 `;
 
-export const FlexCart = styled.div<StylesProps>`
+export const FlexCart = styled.button<StylesProps>`
   display: flex;
   align-items: center;
   gap: ${(props) => props.gap};
@@ -47,6 +47,7 @@ export const FlexCart = styled.div<StylesProps>`
   border-radius: 8px;
   padding: 8px;
   justify-content: space-around;
+  border: none;
   cursor: pointer;
   @media (max-width: 370px) {
     gap: 2px;

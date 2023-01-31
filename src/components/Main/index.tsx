@@ -23,9 +23,7 @@ export interface ModalState {
 
 const Main: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { products, shoppingCart, numberOfItems, loading } = useAppSelector(
-    (state) => state
-  );
+  const { products, numberOfItems, loading } = useAppSelector((state) => state);
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const toggleDrawer = () => {
     setIsOpenDrawer((prevState) => !prevState);
